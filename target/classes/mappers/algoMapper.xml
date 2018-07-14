@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gachon.gtg.mapper.algoMapper">
+<select id="" parameterType="map" resultType="courseVO">
+select title,time,credit FROM course WHERE grade like '%컴퓨터공학과%' and time IS NOT NULL and not title like '%현장실습%'";
+</select>
+</mapper>

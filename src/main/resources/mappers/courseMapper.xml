@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gachon.gtg.mapper.courseMapper">
+
+
+
+<insert id="insertCourse" parameterType="courseVO">
+	insert into course values
+	(#{year},#{semester},#{code},#{title},#{classification},#{credit},#{quota},#{time},#{instructor},#{room},#{grade},#{syllabus}
+	,#{maj_cd},#{cor_cd});
+</insert>
+
+
+<select id="selectallMj" resultType="majorVO">
+	select * from mj
+</select>
+
+<select id="searchCourse" parameterType="map" resultType="courseVO">
+	select c.code,c.title,c.credit,c.quota,c.instructor,c.room,c.grade
+	from course c,mj m
+	where c.maj_cd=m.maj_cd and c.grade like CONCAT('%',#{major},'%') and c.grade like CONCAT('%',#{grade},'%')
+</select>
+<select id="searchCourseName" parameterType="map" resultType="courseVO">
+	select c.code,c.title,c.credit,c.quota,c.instructor,c.room,c.grade
+	from course c,mj m
+	where c.maj_cd=m.maj_cd and title like CONCAT('%',#{coursename},'%')
+</select>
+</mapper>

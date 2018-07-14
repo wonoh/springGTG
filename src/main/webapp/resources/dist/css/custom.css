@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.naver-btn {
+	border: none;
+	width: 50px;
+	height: 25px;
+}
+
+.naver-btn span {
+	background: url(dist/img/naver_login_green.png);
+}

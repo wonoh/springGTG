@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+ 	<typeAliases>
+ 		<typeAlias type="gachon.gtg.domain.CourseVO" alias="courseVO"></typeAlias>
+ 		<typeAlias type="gachon.gtg.domain.UserVO" alias="userVO"></typeAlias>
+ 		<typeAlias type="gachon.gtg.domain.MajorVO" alias="majorVO"></typeAlias>
+ 		<typeAlias type="gachon.gtg.domain.GnVO" alias="gnVO"></typeAlias>
+ 		<typeAlias type="gachon.gtg.domain.LectureVO" alias="lectureVO"></typeAlias>
+ 	</typeAliases>
+
+</configuration>
+
