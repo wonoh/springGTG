@@ -37,7 +37,7 @@ public class LoginController {
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
-	@Inject
+	@Autowired
 	private UserDAO userDAO;
 	UserVO userVO=new UserVO();
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })

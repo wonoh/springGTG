@@ -17,7 +17,7 @@
         lazy-init="false">
  
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/gtg?serverTimezone=UTC" />
+        <property name="url" value="jdbc:mysql://192.9.20.62:3306/gtg?serverTimezone=UTC" />
         <property name="username" value="20189team" />
         <property name="password" value="gachon654321" />
     </bean>    

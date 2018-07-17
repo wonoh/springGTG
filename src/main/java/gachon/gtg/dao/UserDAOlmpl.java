@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gachon.gtg.domain.UserVO;
@@ -14,7 +15,7 @@ import gachon.gtg.domain.UserVO;
 @Repository
 public class UserDAOlmpl implements UserDAO {
 	
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final String namespace= "gachon.gtg.mapper.userMapper";

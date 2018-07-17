@@ -32,7 +32,7 @@ public class NaverLoginBO {
 		return CLIENT_SECRET;
 	}
 	private final static String CLIENT_SECRET = "PLFhfYoxAG";
-    private final static String REDIRECT_URI = "http://210.102.181.158:62019/callback";
+    private final static String REDIRECT_URI = "http://localhost:8080/callback";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

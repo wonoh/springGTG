@@ -5,13 +5,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import gachon.gtg.domain.LectureVO;
-
+@Repository
 public class LectureDAOlmpl implements LectureDAO {
+	private static final String namespace= "gachon.gtg.mapper.algoMapper";
+	@Autowired
+	private SqlSession sqlSession;
 	static int total_leccredit=0;
 
     //declare fixed timetable array
@@ -166,25 +175,61 @@ public class LectureDAOlmpl implements LectureDAO {
         return true;
     }
 	
+	public static HashMap<String,Object> changevalue(List<HashMap<String,Object>> list){
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		String title=null;
+		String time=null;
+		int credit=0;
+		
+		for(int i=0;i<list.size();i++) {
+			System.out.println("리스트사이즈"+list.size());
+			 Map<String, Object> map = list.get(i);
+	            // map에 담긴 data를 꺼내어 변경 후 변수 result에 저장
 
+	            title=map.get("title").toString();
+	            time=map.get("time").toString();
+	            credit=(int) map.get("credit");
+	            resultMap.put("title",title);
+	            resultMap.put("time",time);
+	            resultMap.put("credit",credit);
+		}
+		return resultMap;
+	}
 	@Override
-	public ArrayList<LectureVO> result(int credits,int max_credits) throws Exception {
+	public ArrayList<LectureVO> result(int credits,int max_credits,String major) throws Exception {
 		ArrayList<LectureVO> lecs = new ArrayList<LectureVO>();//시간표들
         HashMap<Integer,Double> cohesion_checked_list = new HashMap<Integer, Double>();
         ValueComparator bvc = new ValueComparator(cohesion_checked_list);
         TreeMap<Integer, Double> sorted_map = new TreeMap<Integer, Double>(bvc);
+        
+        Map<String, Object> parameters = new HashMap<String, Object>();
+		 parameters.put("major",major);
+		
+		List<HashMap<String,Object>> results=sqlSession.selectList(namespace+".algo",parameters);
+		System.out.println("sqlresult"+results);
+		HashMap<String,Object> Llist=changevalue(results);
+
+        for(int i=0;i<Llist.size();i++) {
+        	
+        	String time=(String) Llist.get("time");
+        	System.out.println("time"+time);
+        	time=time.replaceAll("","");
+        	int credit=(int) Llist.get("credit");
+        	lecs.add(new LectureVO(Llist.get("title").toString(),time,credit));
+        }
         for (int num=0;num<5;num++) {
+        	System.out.println("result함수3");
             double cohesion=0.0;
             total_leccredit=0;
             Collections.shuffle(lecs);
             f_lecs.clear();
             f_lecs.add(lecs.get(0));
             total_leccredit+=f_lecs.get(0).lec_credit;
-
+            System.out.println("리스트"+lecs);
 
             for (int i=1;i<lecs.size();i++){//시간표 후보군(from db) 속에서 조합시작
-
-                if(credits<=total_leccredit&&total_leccredit<=max_credits ){// 범위설정
+            	System.out.println("result함수4");
+                if(credits<=total_leccredit&&total_leccredit<=max_credits){// 범위설정
 
                     if (!duplication_check(f_lecs)){//과목들의 중복검사
                         System.out.println(num+" is duplicated.\n");

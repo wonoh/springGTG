@@ -19,12 +19,12 @@
 </select>
 
 <select id="searchCourse" parameterType="map" resultType="courseVO">
-	select c.code,c.title,c.credit,c.quota,c.instructor,c.room,c.grade
+	select c.code,c.title,c.credit,c.time,c.quota,c.instructor,c.room,c.grade
 	from course c,mj m
-	where c.maj_cd=m.maj_cd and c.grade like CONCAT('%',#{major},'%') and c.grade like CONCAT('%',#{grade},'%')
+	where m.maj_cd=c.maj_cd and c.maj_cd=#{major} and c.grade like CONCAT('%',#{grade},'%')
 </select>
 <select id="searchCourseName" parameterType="map" resultType="courseVO">
-	select c.code,c.title,c.credit,c.quota,c.instructor,c.room,c.grade
+	select c.code,c.title,c.credit,c.time,c.quota,c.instructor,c.room,c.grade
 	from course c,mj m
 	where c.maj_cd=m.maj_cd and title like CONCAT('%',#{coursename},'%')
 </select>

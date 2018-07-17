@@ -13,7 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gachon.gtg.domain.CourseVO;
@@ -24,11 +24,11 @@ public class CourseDAOlmpl implements CourseDAO {
 
 	private static final String BASE_URL = "http://203.249.126.126:9090/servlets/timetable";
 	private static final String namespace= "gachon.gtg.mapper.courseMapper";
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
-	@Inject
+	@Autowired
 	private GnDAO gnDAO;
-	@Inject
+	@Autowired
 	private MajorDAO majorDAO;
 
 

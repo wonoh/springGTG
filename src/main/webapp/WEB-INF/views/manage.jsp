@@ -280,8 +280,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body p-0">
+									<div class="card-body">
 									<!-- THE CALENDAR -->
 									<div id="calendar"></div>
+								</div>
+
+
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -475,6 +479,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			//Date for the calendar events (dummy data)
 			var date = new Date()
 			var d = date.getDate(), m = date.getMonth(), y = date.getFullYear()
+
+
+
 			$('#calendar').fullCalendar(
 					{
 						header : {
@@ -514,14 +521,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							allDay : false,
 							backgroundColor : '#00a65a', //Success (green)
 							borderColor : '#00a65a' //Success (green)
-						}, {
-							title : 'Click for Google',
-							start : new Date(y, m, 28),
-							end : new Date(y, m, 29),
-							url : 'http://google.com/',
-							backgroundColor : '#3c8dbc', //Primary (light-blue)
-							borderColor : '#3c8dbc' //Primary (light-blue)
-						} ],
+						}],
 						editable : true,
 						droppable : true, // this allows things to be dropped onto the calendar !!!
 						drop : function(date, allDay) { // this function is called when something is dropped
